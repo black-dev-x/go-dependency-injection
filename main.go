@@ -3,7 +3,6 @@ package main
 import (
 	"database/sql"
 
-	"github.com/black-dev-x/go-dependency-injection/product"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -13,8 +12,7 @@ func main() {
 		panic(err)
 	}
 
-	repository := product.NewProductRepository(db)
-	useCase := product.NewProductUseCase(repository)
+	useCase := NewUseCase(db)
 
 	product := useCase.GetProductByID(3)
 	println("Product ID:", product.ID)
